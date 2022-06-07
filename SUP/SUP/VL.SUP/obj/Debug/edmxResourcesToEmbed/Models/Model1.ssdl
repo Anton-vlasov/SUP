@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище NiceRustleModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="agents">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="type" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="logo" Type="varchar" MaxLength="30" />
+    <Property Name="legal_address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="priority" Type="int" Nullable="false" />
+    <Property Name="director" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="INN" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="KPP" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="log_priority">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date_change" Type="datetime" Nullable="false" />
+    <Property Name="id_agent" Type="int" Nullable="false" />
+    <Property Name="old_priority" Type="int" Nullable="false" />
+    <Property Name="new_priority" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="article" />
+    </Key>
+    <Property Name="name" Type="nchar" MaxLength="50" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="article" Type="int" Nullable="false" />
+    <Property Name="quantity_people" Type="int" Nullable="false" />
+    <Property Name="workshop" Type="int" Nullable="false" />
+    <Property Name="price_agent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="selling">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_product" Type="int" Nullable="false" />
+    <Property Name="id_agent" Type="int" Nullable="false" />
+    <Property Name="date_realese" Type="date" Nullable="false" />
+    <Property Name="number" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_logpriority_agents">
+    <End Role="agents" Type="Self.agents" Multiplicity="1" />
+    <End Role="log_priority" Type="Self.log_priority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agents">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="log_priority">
+        <PropertyRef Name="id_agent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_selling_agents">
+    <End Role="agents" Type="Self.agents" Multiplicity="1" />
+    <End Role="selling" Type="Self.selling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agents">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="selling">
+        <PropertyRef Name="id_agent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_selling_products">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="selling" Type="Self.selling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="article" />
+      </Principal>
+      <Dependent Role="selling">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище NiceRustleModelContainer">
+    <EntitySet Name="agents" EntityType="Self.agents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="log_priority" EntityType="Self.log_priority" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="selling" EntityType="Self.selling" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_logpriority_agents" Association="Self.FK_logpriority_agents">
+      <End Role="agents" EntitySet="agents" />
+      <End Role="log_priority" EntitySet="log_priority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_selling_agents" Association="Self.FK_selling_agents">
+      <End Role="agents" EntitySet="agents" />
+      <End Role="selling" EntitySet="selling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_selling_products" Association="Self.FK_selling_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="selling" EntitySet="selling" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

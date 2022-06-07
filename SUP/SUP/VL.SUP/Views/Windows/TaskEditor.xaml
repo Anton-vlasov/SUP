@@ -1,0 +1,63 @@
+﻿<Window x:Class="SUP.Views.Windows.TaskEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" WindowStartupLocation="CenterScreen"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SUP.Views.Windows"
+        mc:Ignorable="d" Background="Transparent" WindowStyle="None" AllowsTransparency="True"
+        Title="TaskEditor" Height="450" Width="400" Icon="/Resource/icon.png">
+    <Border Background="White" CornerRadius="5" BorderThickness="5" BorderBrush="Red" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="closeButton" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="X" Template="{StaticResource CloseTemplate}" Padding="10 5" Margin="3" Click="closeButton_Click"/>
+            <TextBlock Text="Редактор задачи проекта" Grid.Row="0" Margin="8" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Row="1" TextBlock.FontSize="20px">
+                <TextBlock Text="Название задачи" HorizontalAlignment="Center"/>
+                <TextBox x:Name="titleBox" Text="{Binding Title}" HorizontalContentAlignment="Center" Margin="20px 5px"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" TextBlock.FontSize="20px">
+                <TextBlock Text="Описание" HorizontalAlignment="Center"/>
+                <TextBox x:Name="descriptionTask" Text="{Binding Description}" HorizontalContentAlignment="Center" Margin="20px 5px"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" TextBlock.FontSize="20px">
+                <TextBlock Text="Исполнитель" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="performerBox" Margin="20px 5px" HorizontalContentAlignment="Center" SelectedItem="{Binding Performer}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding FullName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" TextBlock.FontSize="20px">
+                <TextBlock Text="Тестировщик" HorizontalAlignment="Center" />
+                <ComboBox x:Name="testerBox" Margin="20px 5px" HorizontalContentAlignment="Center" SelectedItem="{Binding Tester}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding FullName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <WrapPanel Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="saveButton" Content="Сохранить" Click="saveButton_Click" Margin="5" Template="{StaticResource MainButton}"/>
+                <Button x:Name="deleteButton" Content="Удалить" Click="deleteButton_Click" Margin="5" Template="{StaticResource MainButton}" Foreground="Red"/>
+            </WrapPanel>
+        </Grid>
+    </Border>
+</Window>

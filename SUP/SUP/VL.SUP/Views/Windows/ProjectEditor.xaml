@@ -1,0 +1,35 @@
+﻿<Window x:Class="SUP.Views.Windows.ProjectEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SUP.Views.Windows" ResizeMode="NoResize"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" AllowsTransparency="True"
+        Title="ProjectEditor" Height="250" Width="400" Icon="/Resource/icon.png">
+    <Border Background="White" CornerRadius="5" BorderThickness="5" BorderBrush="Red" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="closeButton" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="X" Template="{StaticResource CloseTemplate}" Padding="10 5" Margin="3" Click="closeButton_Click"/>
+            <TextBlock Text="Редактор проекта" Grid.Row="0" Margin="8" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+            
+            <StackPanel Grid.Row="1" TextBlock.FontSize="20px">
+                <TextBlock Text="Название проекта" HorizontalAlignment="Center"/>
+                <TextBox x:Name="nameBox" Text="{Binding Name}" HorizontalContentAlignment="Center" Margin="20px 5px"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" TextBlock.FontSize="20px">
+                <TextBlock Text="Описание проекта" HorizontalAlignment="Center"/>
+                <TextBox x:Name="descriptionBox" Text="{Binding Description}" HorizontalContentAlignment="Center" Margin="20px 5px"/>
+            </StackPanel>
+            <WrapPanel Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="saveButton" Content="Сохранить" Click="saveButton_Click" Margin="5" Template="{StaticResource MainButton}"/>
+                <Button x:Name="deleteButton" Content="Убрать в архив" Click="deleteButton_Click" Margin="5" Template="{StaticResource MainButton}" Foreground="Red"/>
+            </WrapPanel>
+        </Grid>
+    </Border>
+</Window>

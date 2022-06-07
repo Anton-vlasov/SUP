@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "174040a2-e47c-4529-86f0-8ebfcbb01a7a": {
+      "ProjectGuid": "174040a2-e47c-4529-86f0-8ebfcbb01a7a",
+      "DisplayName": "VL.SUP",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "cfd82df9-0042-48ee-a04a-f8bdf5bb3e51": {
+      "ProjectGuid": "cfd82df9-0042-48ee-a04a-f8bdf5bb3e51",
+      "DisplayName": "VL.Validator",
+      "ColorIndex": 1
+    },
+    "8a6d9544-b77c-4ed5-93a2-e4e72c226a23": {
+      "ProjectGuid": "8a6d9544-b77c-4ed5-93a2-e4e72c226a23",
+      "DisplayName": "VL.Tests",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

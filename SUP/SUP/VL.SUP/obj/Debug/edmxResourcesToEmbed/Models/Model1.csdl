@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NiceRustleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="agents">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="legal_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="priority" Type="Int32" Nullable="false" />
+    <Property Name="director" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="INN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KPP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="selling" Relationship="Self.FK_selling_agents" FromRole="agents" ToRole="selling" />
+    <NavigationProperty Name="log_priority" Relationship="NiceRustleModel.FK_logpriority_agents" FromRole="agents" ToRole="log_priority" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="article" />
+    </Key>
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="article" Type="Int32" Nullable="false" />
+    <Property Name="quantity_people" Type="Int32" Nullable="false" />
+    <Property Name="workshop" Type="Int32" Nullable="false" />
+    <Property Name="price_agent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="selling" Relationship="Self.FK_selling_products" FromRole="products" ToRole="selling" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="selling">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_product" Type="Int32" Nullable="false" />
+    <Property Name="id_agent" Type="Int32" Nullable="false" />
+    <Property Name="date_realese" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="number" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="agents" Relationship="Self.FK_selling_agents" FromRole="selling" ToRole="agents" />
+    <NavigationProperty Name="products" Relationship="Self.FK_selling_products" FromRole="selling" ToRole="products" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_selling_agents">
+    <End Role="agents" Type="Self.agents" Multiplicity="1" />
+    <End Role="selling" Type="Self.selling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agents">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="selling">
+        <PropertyRef Name="id_agent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_selling_products">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="selling" Type="Self.selling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="article" />
+      </Principal>
+      <Dependent Role="selling">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NiceRustleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="agents" EntityType="Self.agents" />
+    <EntitySet Name="products" EntityType="Self.products" />
+    <EntitySet Name="selling" EntityType="Self.selling" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_selling_agents" Association="Self.FK_selling_agents">
+      <End Role="agents" EntitySet="agents" />
+      <End Role="selling" EntitySet="selling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_selling_products" Association="Self.FK_selling_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="selling" EntitySet="selling" />
+    </AssociationSet>
+    <EntitySet Name="log_priority" EntityType="NiceRustleModel.log_priority" />
+    <AssociationSet Name="FK_logpriority_agents" Association="NiceRustleModel.FK_logpriority_agents">
+      <End Role="agents" EntitySet="agents" />
+      <End Role="log_priority" EntitySet="log_priority" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="log_priority">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date_change" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_agent" Type="Int32" Nullable="false" />
+    <Property Name="old_priority" Type="Int32" Nullable="false" />
+    <Property Name="new_priority" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="agents" Relationship="NiceRustleModel.FK_logpriority_agents" FromRole="log_priority" ToRole="agents" />
+  </EntityType>
+  <Association Name="FK_logpriority_agents">
+    <End Type="NiceRustleModel.agents" Role="agents" Multiplicity="1" />
+    <End Type="NiceRustleModel.log_priority" Role="log_priority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="agents">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="log_priority">
+        <PropertyRef Name="id_agent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

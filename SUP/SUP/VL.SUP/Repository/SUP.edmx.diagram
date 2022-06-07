@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="75f1ab81d090489e9f8d8b2d064ead79" Name="Diagram1">
+        <EntityTypeShape EntityType="SUPModel.Employee" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUPModel.EmployeeType" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUPModel.Project" Width="1.5" PointX="2.375" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUPModel.ProjectWork" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUPModel.sysdiagram" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUPModel.Task" Width="1.5" PointX="7.625" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUPModel.TaskState" Width="1.5" PointX="10" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUPModel.Vacation" Width="1.5" PointX="4.125" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="SUPModel.FK_Employees_EmployeeTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SUPModel.FK_ProjectWorks_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="SUPModel.FK_Tasks_Performer" ManuallyRouted="false" />
+        <AssociationConnector Association="SUPModel.FK_Tasks_Tester" ManuallyRouted="false" />
+        <AssociationConnector Association="SUPModel.FK_Vacations_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="SUPModel.FK_ProjectWorks_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="SUPModel.FK_Tasks_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="SUPModel.FK_Tasks_TaskStates" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

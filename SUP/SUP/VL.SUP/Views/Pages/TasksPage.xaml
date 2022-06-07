@@ -1,0 +1,98 @@
+﻿<Page x:Class="SUP.Views.TasksPage" x:Name="tasksPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SUP.Views"
+      xmlns:src="clr-namespace:SUP"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TasksPages">
+
+    <Page.Resources>
+        <Style TargetType="ListViewItem">
+
+        </Style>
+    </Page.Resources>
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50px"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Margin="5">
+            <Border DockPanel.Dock="Top" BorderThickness="1 1 1 0" Height="30" Background="DarkOrange" CornerRadius="10 10 0 0" BorderBrush="{StaticResource MainColor}">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Бэклог"/>
+            </Border>
+
+            <ListBox x:Name="backlogTasksBox" Tag="backlog" src:DragAndDrop.DragEnabled="True" src:DragAndDrop.DropEnabled="True" BorderBrush="{StaticResource MainColor}" MinHeight="250" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="215" HorizontalAlignment="Center" Margin="10" >
+                            <StackPanel Orientation="Horizontal" Width="240">
+                                <TextBlock Text="{Binding NumberTask, StringFormat=Задача {0}}" FontWeight="Bold" FontSize="16" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                <Button Template="{StaticResource MainButton}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" Margin="5 0 0 0" Tag="{Binding Id}" Content="&#9998;" Click="editButton_Click" FontSize="12" Padding="5 2" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Title}" FontStyle="Italic" FontSize="16" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding PerformerName, StringFormat=Исполнитель: {0}}" FontSize="12"/>
+                            <TextBlock Text="{Binding TesterName, StringFormat=Тестировщик: {0}}" FontSize="12"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <DockPanel Margin="5" Grid.Column="1">
+            <Border DockPanel.Dock="Top" BorderThickness="1 1 1 0" Height="30" Background="Yellow" CornerRadius="10 10 0 0" BorderBrush="{StaticResource MainColor}">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Text="В работе"/>
+            </Border>
+
+            <ListBox x:Name="inWorkTasksBox" Tag="inwork" src:DragAndDrop.DragEnabled="True" src:DragAndDrop.DropEnabled="True" AllowDrop="True" BorderBrush="{StaticResource MainColor}" MinHeight="250">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="215" HorizontalAlignment="Center" Margin="10">
+                            <StackPanel Orientation="Horizontal" Width="240">
+                                <TextBlock Text="{Binding NumberTask, StringFormat=Задача {0}}" FontWeight="Bold" FontSize="16" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                <Button Template="{StaticResource MainButton}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" Margin="5 0 0 0" Tag="{Binding Id}" Content="&#9998;" Click="editButton_Click" FontSize="12" Padding="5 2" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Title}" FontStyle="Italic" FontSize="16" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding PerformerName, StringFormat=Исполнитель: {0}}" FontSize="12"/>
+                            <TextBlock Text="{Binding TesterName, StringFormat=Тестировщик: {0}}" FontSize="12"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <DockPanel Margin="5" Grid.Column="2">
+            <Border DockPanel.Dock="Top" BorderThickness="1 1 1 0" Height="30" Background="GreenYellow" CornerRadius="10 10 0 0" BorderBrush="{StaticResource MainColor}">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Выполнено"/>
+            </Border>
+
+            <ListBox x:Name="completedTasksBox" Tag="completed" src:DragAndDrop.DragEnabled="True" src:DragAndDrop.DropEnabled="True" AllowDrop="True" BorderBrush="{StaticResource MainColor}" MinHeight="250">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="215" HorizontalAlignment="Center" Margin="10">
+                            <StackPanel Orientation="Horizontal" Width="240">
+                                <TextBlock Text="{Binding NumberTask, StringFormat=Задача {0}}" FontWeight="Bold" FontSize="16" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                <Button Template="{StaticResource MainButton}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" Margin="5 0 0 0" Tag="{Binding Id}" Content="&#9998;" Click="editButton_Click" FontSize="12" Padding="5 2" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Title}" FontStyle="Italic" FontSize="16" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding PerformerName, StringFormat=Исполнитель: {0}}" FontSize="12"/>
+                            <TextBlock Text="{Binding TesterName, StringFormat=Тестировщик: {0}}" FontSize="12"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+        <Button x:Name="employeeButton" Grid.Row="1" Template="{StaticResource MainButton}" Content="Привязка сотрудников" Click="employeeButton_Click"/>
+        <Button x:Name="addButton" Grid.Row="1" Grid.Column="1" Template="{StaticResource MainButton}" Content="Добавить задачу" Click="addButton_Click"/>        
+        <Button x:Name="editProjectButton" Grid.Row="1" Grid.Column="2" Template="{StaticResource MainButton}" Content="Редактировать проект" Click="editProjectButton_Click"/>
+    </Grid>
+</Page>

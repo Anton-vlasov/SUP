@@ -1,0 +1,56 @@
+﻿<Window x:Class="SUP.Views.Windows.VacationEditor"
+        x:Name="vacationEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SUP.Views.Windows" Background="Transparent" WindowStyle="None" AllowsTransparency="True"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner"
+        Title="VacationEditor" Height="450" Width="400" Icon="/Resource/icon.png">
+    <Border Background="White" CornerRadius="5" BorderThickness="5" BorderBrush="Red" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="closeButton" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="X" Template="{StaticResource CloseTemplate}" Padding="10 5" Margin="3" Click="closeButton_Click"/>
+            <TextBlock Text="Привязка сотрудников" Grid.Row="0" Margin="8" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Row="1" TextBlock.FontSize="20px">
+                <TextBlock Text="Дата начала" HorizontalAlignment="Center"/>
+                <DatePicker x:Name="startDateBox" SelectedDate="{Binding DateStart}" Margin="20px 5px" HorizontalAlignment="Center" SelectedDateChanged="startDateBox_SelectedDateChanged"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" TextBlock.FontSize="20px">
+                <TextBlock Text="Дата окончания" HorizontalAlignment="Center"/>
+                <DatePicker x:Name="endDateBox" SelectedDate="{Binding DateEnd}" SelectedDateFormat="Short" Margin="20px 5px" HorizontalAlignment="Center" SelectedDateChanged="endDateBox_SelectedDateChanged"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" TextBlock.FontSize="20px">
+                <TextBlock Text="Комментарий" HorizontalAlignment="Center"/>
+                <TextBox x:Name="SecondNameBox" Text="{Binding Comment}" Margin="20px 5px" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" TextBlock.FontSize="20px">
+                <TextBlock Text="Сотрудник" HorizontalAlignment="Center" />
+                <ComboBox x:Name="employeeBox" Margin="20px 5px" HorizontalContentAlignment="Center" SelectionChanged="employeeBox_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding FullName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <WrapPanel Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="saveButton" Content="Сохранить" Click="saveButton_Click" Margin="5" Template="{StaticResource MainButton}"/>
+                <Button x:Name="deleteButton" Content="Удалить" Click="deleteButton_Click" Margin="5" Template="{StaticResource MainButton}" Foreground="Red"/>
+            </WrapPanel>
+        </Grid>
+    </Border>
+</Window>

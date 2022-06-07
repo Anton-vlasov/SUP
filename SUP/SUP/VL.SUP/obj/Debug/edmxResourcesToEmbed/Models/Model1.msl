@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище NiceRustleModelContainer" CdmEntityContainer="NiceRustleEntities">
+    <EntitySetMapping Name="agents">
+      <EntityTypeMapping TypeName="NiceRustleModel.agents">
+        <MappingFragment StoreEntitySet="agents">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="logo" ColumnName="logo" />
+          <ScalarProperty Name="legal_address" ColumnName="legal_address" />
+          <ScalarProperty Name="priority" ColumnName="priority" />
+          <ScalarProperty Name="director" ColumnName="director" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+          <ScalarProperty Name="KPP" ColumnName="KPP" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="NiceRustleModel.products">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="article" ColumnName="article" />
+          <ScalarProperty Name="quantity_people" ColumnName="quantity_people" />
+          <ScalarProperty Name="workshop" ColumnName="workshop" />
+          <ScalarProperty Name="price_agent" ColumnName="price_agent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="selling">
+      <EntityTypeMapping TypeName="NiceRustleModel.selling">
+        <MappingFragment StoreEntitySet="selling">
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
+          <ScalarProperty Name="id_agent" ColumnName="id_agent" />
+          <ScalarProperty Name="date_realese" ColumnName="date_realese" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="NiceRustleModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="log_priority">
+      <EntityTypeMapping TypeName="NiceRustleModel.log_priority">
+        <MappingFragment StoreEntitySet="log_priority">
+          <ScalarProperty Name="new_priority" ColumnName="new_priority" />
+          <ScalarProperty Name="old_priority" ColumnName="old_priority" />
+          <ScalarProperty Name="id_agent" ColumnName="id_agent" />
+          <ScalarProperty Name="date_change" ColumnName="date_change" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

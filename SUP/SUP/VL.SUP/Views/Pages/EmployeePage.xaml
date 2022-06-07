@@ -1,0 +1,67 @@
+﻿<Page x:Class="SUP.Views.EmployeesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:SUP.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EmployeePage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200px"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="mainList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.RowSpan="4" Background="{StaticResource MainColor}" SelectionChanged="mainList_SelectionChanged">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="244">
+                        <Border BorderThickness="3">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Border}" Value="True" >
+                                            <Setter Property="BorderBrush" Value="LightGreen"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                        <TextBlock Text="{Binding FullName}" Margin="5" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding EmployeeTypeString}" Margin="5" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding Salary}" FontSize="16" Margin="5" TextWrapping="Wrap" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding PerformerTaskCount}" Margin="5" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding TesterTaskCount}" Margin="5" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding ProjectsCount}" Margin="5" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button x:Name="addButton" Grid.Row="0" Grid.Column="1" Template="{StaticResource MainButton}" Foreground="DodgerBlue" Content="Добавить сотрудника" HorizontalAlignment="Stretch" Margin="5" Click="addButton_Click"/>
+        <Button x:Name="vacationsButton" Grid.Row="1" Grid.Column="2" Template="{StaticResource MainButton}" Foreground="DodgerBlue" Content="Отпуска сотрудников" HorizontalAlignment="Stretch" Margin="5" Click="vacationsButton_Click"/>
+        
+        <StackPanel Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" TextBlock.FontSize="16">
+            <TextBlock Text="Должности" TextAlignment="Center"/>
+            <ComboBox x:Name="employeeTypeBox" Margin="5" DisplayMemberPath="Title" HorizontalContentAlignment="Center" SelectedValuePath="Id" SelectionChanged="employeeTypeBox_SelectionChanged"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" TextBlock.FontSize="16">
+            <TextBlock Text="Поиск по имени" TextAlignment="Center"/>
+            <TextBox x:Name="nameBox" Margin="5" HorizontalContentAlignment="Center" TextChanged="nameBox_TextChanged"/>
+        </StackPanel>
+    </Grid>
+</Page>

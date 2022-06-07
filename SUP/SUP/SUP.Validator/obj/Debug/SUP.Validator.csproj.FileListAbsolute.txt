@@ -1,0 +1,12 @@
+E:\Диплом\SUP\SUP\SUP.Validator\bin\Debug\SUP.Validator.dll
+E:\Диплом\SUP\SUP\SUP.Validator\bin\Debug\SUP.Validator.pdb
+E:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.csproj.AssemblyReference.cache
+E:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.csproj.CoreCompileInputs.cache
+E:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.dll
+E:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.pdb
+G:\Диплом\SUP\SUP\SUP.Validator\bin\Debug\SUP.Validator.dll
+G:\Диплом\SUP\SUP\SUP.Validator\bin\Debug\SUP.Validator.pdb
+G:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.csprojAssemblyReference.cache
+G:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.csproj.CoreCompileInputs.cache
+G:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.dll
+G:\Диплом\SUP\SUP\SUP.Validator\obj\Debug\SUP.Validator.pdb
